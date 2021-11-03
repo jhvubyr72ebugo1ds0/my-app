@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { removeArticle } from "../store/actions";
+import {connect} from 'react-redux';
+import {removeArticle} from "../store/actions";
 
 class Article extends React.Component {
     constructor(props) {

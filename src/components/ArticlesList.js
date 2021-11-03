@@ -1,10 +1,9 @@
 import React from "react";
 import Article from "./Article";
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 const ArticlesList = ({articles}) => {
-    return !articles.length ?
-        <p>Постов пока нет</p> :
+    return !articles.length ? <p>Постов пока нет</p> :
         <div>
             <ul>{articles.map(article => <Article key={article.id} article={article}/>)}</ul>
         </div>

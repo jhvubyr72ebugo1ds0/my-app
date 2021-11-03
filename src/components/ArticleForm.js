@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from 'react-redux';
-import { addArticle } from "../store/actions";
+import {connect} from 'react-redux';
+import {addArticle} from "../store/actions";
 
 class ArticleForm extends React.Component {
     constructor(props) {
