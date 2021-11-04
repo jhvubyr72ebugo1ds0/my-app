@@ -1,29 +1,26 @@
 import React from "react";
+import {connect} from "react-redux";
+import {fetchArticles} from "../store/actions";
 
-export default class FetchedArticlesList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            articles: [],
-        }
-        this.handleClick = this.handleClick.bind(this);
-    }
-
-    async handleClick() {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=15');
-        const json = await response.json();
-        this.setState({articles: json});
-    }
-
-    render() {
-        if (!this.state.articles.length) {
-            return (
-            <div>
-                <p>Постов нет/Нюхай бебру</p>
-                <button onClick={this.handleClick}>Загрузить</button>
-            </div>)
-        } else {
-            return <ol>{this.state.articles.map(article => <li key={article.id}>{article.title}</li>)}</ol>
-        }
+const FetchedArticlesList = ({articles, fetchArticles}) => {
+    if (!articles.length) {
+        return <div>
+            <p>Постов пока нет/Нюхай бебру</p>
+            <button onClick={fetchArticles}>Загрузить</button>
+        </div>
+    } else {
+        return <ol>
+            {articles.map(article => <li key={article.id}>{article.title}</li>)}
+        </ol>
     }
 }
+
+const mapStateToProps = state => {
+    return ({ articles: state.articles.fetchedArticles});
+};
+
+const mapDispatchToProps = {
+    fetchArticles
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FetchedArticlesList)
